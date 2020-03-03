@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-Feb 2020
+Mar 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -29,13 +29,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 - [Big data and visualization before the hands-on lab setup guide](#big-data-and-visualization-before-the-hands-on-lab-setup-guide)
   - [Requirements](#requirements)
   - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Provision Azure Databricks](#task-1-provision-azure-databricks)
+    - [Task 1: Provision Azure IOT Hub](#task-1-provision-azure-databricks)
     - [Task 2: Create Azure Storage account](#task-2-create-azure-storage-account)
     - [Task 3: Create storage container](#task-3-create-storage-container)
-    - [Task 4: Provision Azure Data Factory](#task-4-provision-azure-data-factory)
+    - [Task 4: Provision Azure Stream Analytics](#task-4-provision-azure-data-factory)
     - [Task 5: Download and install Power BI Desktop](#task-5-download-and-install-power-bi-desktop)
     - [Task 6: Download Azure Storage Explorer](#task-6-download-and-install-azure-storage-explorer)
-    - [Task 7: Provision SnowFlake](#task-7-provision-snow-flake)
 
 <!-- /TOC -->
 
@@ -53,15 +52,15 @@ Duration: 30 minutes
 
 In this exercise, you will set up your environment for use in the rest of the hands-on lab. You should follow all the steps provided in the Before the Hands-on Lab section to prepare your environment _before_ attending the hands-on lab.
 
-### Task 1: Provision Azure Databricks
+### Task 1: Provision Azure IOT Hub
 
-Azure Databricks is an Apache Spark-based analytics platform optimized for Azure. It will be used in this lab to build and train a machine learning model used to predict flight delays.
+Azure IOT Hub is an Azure service that enables you to ingest high volumes of data from your IoT devices into the cloud for storage or processing.
 
 > **Note**: To view the Azure portal menu, select the menu icon in the upper left-hand corner.
 
 ![The Azure portal menu is highlighted.](media/portal-menu.png 'Azure portal menu')
 
-1. In the [Azure Portal](https://portal.azure.com) (https://portal.azure.com), select **+ Create a resource** within the portal menu, then type "Azure Databricks" into the search bar. Select Azure Databricks from the results.
+1. In the [Azure Portal](https://portal.azure.com) (https://portal.azure.com), select **+ Create a resource** within the portal menu, then type "IOT Hub" into the search bar. Select IOT Hub from the results.
 
    ![Select create a resource, type in Azure Databricks, then select it from the results list](media/create-azure-databricks-resource.png)
 
