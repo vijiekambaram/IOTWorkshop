@@ -2,16 +2,13 @@
 
 Use case -
 
-Convert unstructured raw data, into more conformed business schema and answer business questions.
+Ingest the IOT data from IOT devices for real time monitoring.
 
-We will be ingesting data from two different sources:
+We will be ingesting data from two different spreasheets shared which is available in lab-files. This data will be ingested by a Python code which will acts a Device emiting the data
 
-- Magento
-- Shopify
+Creating a data pipeline to ingest the data, process the data and visualize the streaming data
 
-Creating a data pipeline to store the raw data, process the data and store the data in SnowFlakes as single fact and dimension. Then we will visualize the data to understand the ordering pattern from these two channels.
-
-February 2020
+March 2020
 
 ## Target audience
 
@@ -23,7 +20,7 @@ February 2020
 ### Workshop
 
 At the end of this workshop, you will be better able to build a complete data pipeline and visualize the data.
-In addition, you will learn how to ingest the data, use Azure Data Factory (ADF) for data movement and operationalizing the data pipeline, how to store the data in raw format, learn about Azure Data Lake Gen 2, Process the data using Databricks ,learn about Databricks auto clustering ,summarize data with Azure Databricks and PySpark, store the data into SnowFlake using Azure DataBricks Connector and visualize the data using Power BI.
+In addition, you will learn how to ingest the data into Azure IOT hub, perform some processing in Azure Stream Analytics and visualize the data using Power BI.
 
 
 ### Hands-on lab
@@ -34,12 +31,10 @@ By the end of the lab, you will be able to show an end-to-end solution, leveragi
 
 ## Azure services and related products
 
-- Azure Databricks
-- Azure Data Factory (ADF)
+- Azure IOT Hub
+- Azure Stream Analytics
 - Azure Storage
 - Power BI Desktop
-- SnowFlake (Optional) can use a SQL Store to store structured data.
-
 
 ## Related references
 
