@@ -129,6 +129,10 @@ In this task we will create Power BI Online account as it supports real time mon
 2. Click on Sign In and Create an Account using Work Account
 
     ![Complete the Azure PowerBI.](media/power_bi_1.png)
+    
+Power BI desktop is required to make a connection to your Blob Storage for batch reporting.
+
+1. Download and install Power BI Desktop. (https://powerbi.microsoft.com/en-us/desktop/)
 
 
 ### Task 6: Download Azure Storage Explorer
