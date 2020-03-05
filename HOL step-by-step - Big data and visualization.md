@@ -103,12 +103,12 @@ In this exercise, you will set up the environment needed to run the ingestion co
   
 6.	Ensure pandas, numpy, xlrd are installed. Else run the following commands
 
-pip install pandas
-pip install numpy
-pip install xlrd
+	pip install pandas
+	pip install numpy
+	pip install xlrd
 
 7.	Install the Azure IOT SDK
-pip install azure-iot-device
+	pip install azure-iot-device
 
 ## Exercise 3: Upload the Reference data into Blob
 
@@ -172,7 +172,7 @@ In this exercise, you will configure Stream Analytics - Input, Output and Query.
 20.	Similarly add one more output for storing a copy of aggregated data in Blob. Give the Output Alias as blob-agg-output and path pattern as umw_iot_hub_agg_data_1/{datetime:yyyy}_{datetime:MM}_{datetime:dd}/{datetime:HH} 
 
 ## Query Section
-This is where the Business rules logic will be written and it is more of Query Language.
+This is where the Business rules logic will be written and it is more of Query Language
 21.	From the Left Pane, Click on Query
 22.	Copy the Query from lab files – Stream Analytics Query and paste in the Query editor
 23.	Click on Save Query
