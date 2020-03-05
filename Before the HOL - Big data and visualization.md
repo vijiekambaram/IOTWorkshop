@@ -33,7 +33,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 2: Create Azure Storage account](#task-2-create-azure-storage-account)
     - [Task 3: Create storage container](#task-3-create-storage-container)
     - [Task 4: Provision Azure Stream Analytics](#task-4-provision-azure-data-factory)
-    - [Task 5: Download and install Power BI Desktop](#task-5-download-and-install-power-bi-desktop)
+    - [Task 5: Setup Power BI Account](#task-5-download-and-install-power-bi-desktop)
     - [Task 6: Download Azure Storage Explorer](#task-6-download-and-install-azure-storage-explorer)
 
 <!-- /TOC -->
