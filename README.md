@@ -36,7 +36,3 @@ By the end of the lab, you will be able to show an end-to-end solution, leveragi
 - Azure Storage
 - Power BI Desktop
 
-## Related references
-
--
-
