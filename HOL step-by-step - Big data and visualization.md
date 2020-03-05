@@ -29,31 +29,14 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 - [Big data and visualization hands-on lab step-by-step](#big-data-and-visualization-hands-on-lab-step-by-step)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
   - [Requirements](#requirements)
-  -  [Exercise 1: Get Storage Account Details]
-      - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
-  - [Exercise 2: Setup Azure Data Factory](#exercise-2-setup-azure-data-factory)
-    
-    - [Task 1: Configure Azure Data Factory](#task-1-configure-azure-data-factory)
-    
-  - [Exercise 3: Develop a data factory pipeline for data movement](#exercise-3-develop-a-data-factory-pipeline-for-data-movement)
-    - [Task 1: Create copy pipeline using the Copy Data Wizard](#task-1-create-copy-pipeline-using-the-copy-data-wizard)
- 
-  - [Exercise 4: Retrieve lab environment information and create Databricks cluster](#exercise-4-retrieve-lab-environment-information-and-create-databricks-cluster)
-    - [Task 1 : Create an Azure Databricks cluster](#task-1-create-an-azure-databricks-cluster)
-  - [Exercise 2: Load Data and Databricks Notebooks](#exercise-2-load-sample-data-and-databricks-notebooks)
-    
-    - [Task 1: Open Azure Databricks and complete lab notebooks](#task-3-open-azure-databricks-and-complete-lab-notebooks)
-  
-    - [Task 2: Create Azure Databricks Linked Service](#task-1-create-azure-databricks-linked-service)
-    - [Task 3: Trigger workflow](#task-2-trigger-workflow)
-  - [Exercise 7: Visualizing in Power BI Desktop](#exercise-7-visualizing-in-power-bi-desktop)
-    - [Task 1: Obtain the JDBC connection string to your Azure Databricks cluster](#task-1-obtain-the-jdbc-connection-string-to-your-azure-databricks-cluster)
-    - [Task 2: Connect to Azure Databricks using Power BI Desktop](#task-2-connect-to-azure-databricks-using-power-bi-desktop)
-    - [Task 3: Create Power BI report](#task-3-create-power-bi-report)
-   - [After the hands-on lab](#after-the-hands-on-lab)
-    - [Task 1: Delete resource group](#task-1-delete-resource-group)
+  - [Exercise 1: Register a Device to IOT Hub](#exercise-1-register-device)
+  - [Exercise 2: Environment for Data Ingestion into IOT Hub](#exercise-2-environment-setup)  
+  - [Exercise 3: Upload the Reference data into Blob](#exercise-3-data-upload)
+  - [Exercise 4: Configure Stream Analytics Job](#exercise-4-stream-analytics-setup)
+  - [Exercise 5: Start Stream Analytics Job](#exercise-5-start-stream-analytics)
+  - [Exercise 6: Run the Ingestion code to push data to IOT Hub](#exercise-7-run-ingestion-code)
+  - [Exercise 7: Login to PowerBI Online account](#exercise-8-power-bi-online
 
 <!-- /TOC -->
 
@@ -65,12 +48,6 @@ This hands-on lab is designed to provide exposure to many of Microsoft's transfo
 
 By the end of the lab, you will be able to show an end-to-end solution, leveraging many of these technologies, but not necessarily doing work in every component possible.
 
-## Solution architecture
-
-Below is a diagram of the solution architecture you will build in this lab. Please study this carefully so you understand the whole of the solution as you are working on the various components.
-
-![This is the high-level overview diagram of the end-to-end solution.](./media/SolutionArch.png 'High-level overview diagram')
-
 ## Requirements
 
 1. Microsoft Azure subscription must be pay-as-you-go or MSDN.
@@ -80,390 +57,151 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
 3. Follow all the steps provided in [Before the Hands-on Lab](Before%20the%20HOL%20-%20Big%20data%20and%20visualization.md).
 
-## Exercise 1: Retrieve Azure Storage account information and Subscription Id
+## Exercise 1: Register a Device to IOT Hub
 
-### Task 1: Retrieve Azure Storage account information and Subscription Id
+1.	In the Azure Portal, type IOT Hub in Search box and Click on IOT Hub
+2.	On the Left pane, Click on Shared Access Policies and click on iothubowner
+    ![Copy SAS](media/exercise1_2.png)
+ 
+    Copy the Primary Key and Store it in a Notepad, we will need this during Stream Analytics Input configuration
+    ![Copy Primary Key](media/exercise1_2b.png)
+		 
+3.	On the Left pane scroll down and Click on IOT Devices to create an identity for device to ingest the data into IOT Hub. Click +New
+  
+    ![Create Identity](media/exercise1_3.png)
+ 
 
-You will need to have the Azure Storage account name and access key when you create your Azure Databricks cluster during the lab. You will also need to create storage containers in which you will store your data files.
+4.	Enter a Device ID and Click on Save
+    ![Enter Device Id](media/exercise1_4.png)
 
-1. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
+ 
+5.	Click on gensetdevice 
+    
+    ![Click on device](media/exercise1_5.png)
 
-2. Next, select your lab Azure Storage account from the list.
+6.	Copy the Primary Connection String and Store it in a Notepad. This is needed to update the connection string in the code that will run on a device.
+ 
+    ![Copy Primary Connection String](media/exercise1_6.png)
+   
 
-   ![Select the lab Azure Storage account from within your lab resource group.](media/select-azure-storage-account.png)
-
-3. On the Overview blade, locate and copy your Azure **Subscription Id** and save to a text editor such as Notepad for later.
-
-   ![Copy the Azure Subscription Id on the Overview blade.](media/azure-storage-subscription-id.png)
-
-4. Select **Access keys** (1) from the menu. Copy the **storage account name** (2) and the **key1** key (3) and copy the values to a text editor such as Notepad for later.
-
-   ![Select Access keys from menu - copy storage account name - copy key.](media/azure-storage-access-keys.png)
-
-
-
-## Exercise 2: Setup Azure Data Factory
+## Exercise 2: Environment for Data Ingestion into IOT Hub
 
 Duration: 20 minutes
 
-In this exercise, you will create a baseline environment for Azure Data Factory development for further operationalization of data movement and processing. You will create a Data Factory service, create a Linked Service and set up copy from Magento and Shopify Data as the Source
+In this exercise, you will set up the environment needed to run the ingestion code into IOT Hub
 
+1.	Ensure Python 3.7+ is installed
+2.	Download Python code from Lab Files
+3.	Genset data will be emailed during the lab
+4.	Open the Python code in the a Python Editor or Notepad++ and update the connection string
 
+    ![Connection String](media/exercise2_4.png)
 
-### Task 1: Configure Azure Data Factory :Create copy pipeline using the Copy Data Wizard
+5.	Update the input file location in iothub_client_telemetry_more_sample_run function 
 
-1. Launch a new browser window, and navigate to the Azure portal (<https://portal.azure.com>). Once prompted, log in with your Microsoft Azure credentials. If prompted, choose whether your account is an organization account or a Microsoft account. This will be based on which account was used to provision your Azure subscription that is being used for this lab.
-
-2. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
-
-3. Next, select your Azure Data Factory service from the list.
-
-4. On the Data Factory blade, select **Author & Monitor** under Actions.
-
-   ![In the Azure Data Factory blade, under Actions, the Author & Monitor option is selected.](./media/adf-author-monitor.png 'Author & Monitor')
-
-5. A new page will open in another tab or new window. Within the Azure Data Factory site, select **Author** (the pencil icon) on the menu.
-
-   ![Select Author from the menu.](media/adf-home-author-link.png 'Author link on ADF home page')
-
-6. Select the copy activity
-
-   ![Select Copy Data, then select the Services and apps tab, and select Create New Connection.](./media/CopyActivity_Step1.png 'Steps to create a new Integation Runtime connection')
-
-7. In the Linked Service blade that appears select REST.
-
-   ![Select REST for the Linked Service Type](media/CopyActivity_Step2.png 'Linked Service Creation')
-
-8. Fill in the details on the New Linked Service, you can refer to this link for details on each field:
-https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
-
-   ![Fill in details and create the Linked Service](media/CopyActivity_Step3.png 'Linked Service Creation step 2')
-
+    ![File Location](media/exercise2_5.png)
   
-9. On the Destination screen, select **+ Create new connection**.
+6.	Ensure pandas, numpy, xlrd are installed. Else run the following commands
 
-10. Select **Azure Data Lake Gen 2** within the New Linked Service blade, then select **Continue**.
+pip install pandas
+pip install numpy
+pip install xlrd
 
-    
-11. On the New Linked Service (Azure Data Lake Gen2) account screen, enter the following and then select **Create**.
+7.	Install the Azure IOT SDK
+pip install azure-iot-device
 
-    - Name: **DataLakeStorageOutput**
-
-    - Connect via integration runtime: **Select your Integration Runtime**.
-
-    - Authentication method: **Select Account key**.
-
-    - Account selection method: **From Azure subscription**
-
-    - Storage account name: **Select the data lake gen 2 storage account you provisioned in the before-the-lab section**.
-
-    
-15. On the Destination data store page, select **Next**.
-
-16. From the **Choose the output file or folder** tab, enter the following:
-
-    - Folder path: **Mageneto/{Year}/{Month}/**
-
-    - Year: Select **yyyy** from the drop down.
-
-    - Month: Select **MM** from the drop down.
-
-    - Copy behavior: **Merge files**
-
-    - Select **Next**.
-
-      ![On the Copy Data Choose the output file or folder page, fields are set to the previously defined settings.](media/adf-copy-data-output-file-folder.png 'Choose the output file or folder page')
-
-17. On the File format settings screen, select the **Text format** file format, and check the **Add header to file** checkbox, then select **Next**.
-
-    ![On the Copy Data File format settings page, the check box for Add header to file is selected.](media/adf-copy-data-file-format-settings.png 'File format settings page')
-
-18. On the **Settings** screen, select **Skip incompatible rows** under Actions. Expand Advanced settings and set Degree of copy parallelism to **10**, then select **Next**.
-
-    ![Select Skip incompatible rows and set copy parallelism to 10.](media/adf-copy-data-settings.png 'Settings page')
-
-19. Review settings on the **Summary** tab, but **DO NOT choose Next**.
-
-    ![Summary page](media/adf-copy-data-summary.png 'Summary page')
-
-20. Scroll down on the summary page until you see the **Copy Settings** section. Select **Edit** next to **Copy Settings**.
-
-    ![Scroll down and select Edit within Copy Settings.](media/adf-copy-data-review-page.png 'Summary page')
-
-21. Change the following Copy settings:
-
-    - Retry: Set to **3**.
-
-    - Select **Save**.
-
-      ![Set retry to 3.](media/adf-copy-data-copy-settings.png 'Copy settings')
-
-22. After saving the Copy settings, select **Next** on the Summary tab.
-
-23. On the **Deployment** screen you will see a message that the deployment in is progress, and after a minute or two that the deployment completed. Select **Edit Pipeline** to close out of the wizard.
-
-    ![Select Edit Pipeline on the bottom of the page.](media/adf-copy-data-deployment.png 'Deployment page')
-
-
-## Exercise 1: Retrieve lab environment information and create Databricks cluster
+## Exercise 3: Upload the Reference data into Blob
 
 Duration: 10 minutes
 
-In this exercise, you will retrieve your Azure Storage account name and access key and your Azure Subscription Id and record the values to use later within the lab. You will also create a new Azure Databricks cluster.
+In this exercise, you will upload the reference data into Blob. Download the device_reference_data from lab files to local.
 
-### Task 2: Create an Azure Databricks cluster
+1.	Go to the Storage Account and click on Container and Select iot-hub-asa
+    ![Storage Container](media/exercise3_1.png)
 
-You have provisioned an Azure Databricks workspace, and now you need to create a new cluster within the workspace. Part of the cluster configuration includes setting up an account access key to your Azure Storage account, using the Spark Config within the new cluster form. This will allow your cluster to access the lab files.
+2.	Select the device_reference_data.json from your local and Click on Upload
+3.	Click on Advanced and enter Upload to Folder as iotreferencedata. Click on Upload
+ 
 
-1. From the side menu in the Azure portal, select **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
+## Exercise 4: Configure Stream Analytics Job
 
-2. Next, select your Azure Databricks service from the list.
+In this exercise, you will configure Stream Analytics - Input, Output and Query.
 
-   ![Select the Azure Databricks service from within your lab resource group.](media/select-azure-databricks-service.png)
+1.	Go to Stream Analytics resource that was created in Before HOL 
 
-3. In the Overview pane of the Azure Databricks service, select **Launch Workspace**.
+## Input Section
+2.	Click on Inputs and then +Add Stream Input
 
-   ![Select Launch Workspace within the Azure Databricks service overview pane.](media/azure-databricks-launch-workspace.png)
+    ![Stream Input](media/exercise4_2.png)
+ 
+3.	Enter the Input Alias name as iot-hub-input
+4.	Click Select IoT Hub from your subscriptions. If it doesn’t populate automatically, select Provide IoT Hub settings manually
+5.	Enter/Select IOT Hub as iothubworkshopdemo and other details as below. Click on Save
 
-   Azure Databricks will automatically log you in using Azure Active Directory Single Sign On.
+    ![Select IOT Hub](media/exercise4_5.png)
 
-   ![Azure Databricks Azure Active Directory Single Sign On.](media/azure-databricks-aad.png)
+6.	Click on +Add reference input and Select Blob Storage
+7.	Enter Input alias as blob-input
+8.	Click on Select Blob storage from your subscriptions
+9.	Select the right Storage Account, Container, path pattern where the reference data resides. Click on Save
 
-4. Select **Clusters** (1) from the menu, then select **Create Cluster** (2).
+    ![Select Storage Account](media/exercise4_9.png)
 
-   ![Select Clusters from menu then select Create Cluster.](media/azure-databricks-create-cluster-button.png)
+## Output Section 
 
-5. On the Create New Cluster form, provide the following:
+10.	On the Left Pane, Click on Outputs and Click on +Add -> PowerBI. This is for real time monitoring.
 
-   - **Cluster Name**: lab
+    ![Select PowerBI Output](media/exercise4_10.png)
 
-   - **Cluster Type**: Standard
+11.	Click on Authorize if there is already PowerBI Online account. Else Click on Sign Up using work account. Since the dashboard is already created using our account, we will provide the account details during the lab.
+12.	Once Authorized, enter the Output Alias as power-bi-output
+13.	Select My Workspace and enter dataset name as streamingData and table as streamingTable
 
-   - **Databricks Runtime Version**: Runtime: 6.2 0r 6.3  (**Note**: the runtime version may have **LTS** after the version. This is also a valid selection.)
+    ![Select PowerBI Workspace](media/exercise4_13.png)
 
-   - **Python Version**: 3
+14.	Add another output blob-raw-output, to store the raw input without any transformations in Blob for batch reporting or analytics
 
-   - **Enable Autoscaling**: Uncheck this option.
+15.	On the Left Pane, Click on Outputs and Click on +Add -> Blob storage
 
-   - **Auto Termination**: Check the box and enter 120
+    ![Select Blob Output](media/exercise4_15.png)
 
-   - **Worker Type**: Standard_F4s
+16.	Enter Output alias as blob-raw-input
+17.	Click on Select Blob storage from your subscriptions
+18.	Select the right Storage Account, Container
+19.	Give the path pattern as umw_iot_hub_raw_data_1/{datetime:yyyy}_{datetime:MM}_{datetime:dd}/{datetime:HH} where the data will get written. Click on Save.
+20.	Similarly add one more output for storing a copy of aggregated data in Blob. Give the Output Alias as blob-agg-output and path pattern as umw_iot_hub_agg_data_1/{datetime:yyyy}_{datetime:MM}_{datetime:dd}/{datetime:HH} 
 
-   - **Driver Type**: Same as worker
+## Query Section
+This is where the Business rules logic will be written and it is more of Query Language.
+21.	From the Left Pane, Click on Query
+22.	Copy the Query from lab files – Stream Analytics Query and paste in the Query editor
+23.	Click on Save Query
 
-   - **Workers**: 1
+## Exercise 5: Start Stream Analytics Job
 
-      ![Complete the form using the options as outlined above.](media/azure-databricks-create-cluster-form.png)
+Duration: 10 minutes
 
-6. Select **Create Cluster**.
+In this exercise, you will trigger the Stream Analytics Job. 
 
-## Exercise 2: Load Sample Data and Databricks Notebooks
+1.	On the Left Pane in Stream Analytics, Overview -> Start -> Job output start time as Now. Click on Start. This will take some time to start the Streaming job
 
-In this exercise, you will load data from Data Lake Gen 2, perform transformations and write back to Data Lake Gen 2.
+    ![Start Streaming](media/exercise5_1.png)
 
-4. Open your Azure Databricks workspace. Before continuing to the next step, verify that your new cluster is running. Do this by navigating to **Clusters** on the left-hand menu and ensuring that the state of your cluster is **Running**.
 
-   ![The cluster is shown in the Running state.](media/azure-databricks-clusters-running.png 'Clusters')
+## Exercise 6: Run the Ingestion code to push data to IOT Hub
 
-### Task 1: Open Azure Databricks and complete lab notebooks
+1.	On your local machine, execute the Python code either using PyCharm or execute the command manually. Go to the location where Python code resides and enter the command python iot-hub-umw-simulation-script.py.
+2.	This will keep ingesting the data into IOT Hub for every 10 secs
 
-1. Download the following file:
 
-   - [BigDataVis.dbc](lab-files/BigDataVis.dbc) <VIJI PLEASE PUT THE FILE PATH HERE FOR READING THE MAGENTO AND SHOPIFY DATA> 
+## Exercise 7: Login to PowerBI account
 
-2. Within Azure Databricks, select **Workspace** on the menu, then **Users**, select your user, then select the down arrow on the top of your user workspace. Select **Import**.
+Duration: 10 minutes 
 
-   ![Screenshot showing selecting import within the user workspace.](media/select-import-in-user-workspace.png 'Import')
+1.	Go  https://app.powerbi.com and login using the account shared during the lab
+2.	From My Workspace, Select iot-hub-dashboard3 from Dashboards section. Dashboard will get updated in real time
 
-3. Within the Import Notebooks dialog, select Import from: file, then drag-and-drop the file or browse to upload it.
-
-   ![Select import from file.](media/import-notebooks.png 'Import from file')
-
-
-5. Before you begin, make sure you attach your cluster to the notebooks, using the dropdown. You will need to do this for each notebook you open. There are 5 notebooks included in the BigDataVis.dbc
-
-   ![Select your cluster to attach it to the notebook.](media/attach-cluster-to-notebook.png 'Attach cluster to notebook')
-
-6. Run each cell of the notebooks located in the **Exercise 2** folder (01, 02 and 03) individually by selecting within the cell, then entering **Ctrl+Enter** on your keyboard. Pay close attention to the instructions within the notebook so you understand each step of the data preparation process.
-
-   ![The notebooks within the Exercise 2 folder are displayed.](media/azure-databricks-exercise-2.png 'Exercise 2 folder')
-
-7. Do NOT run the `Clean up` part of Notebook 3 (i.e. this command: `webservice.delete()`). 
-
-## Exercise 3: Operationalize Azure Databricks and Data Factory (Optional Task)
-
-Duration: 20 minutes
-
-In this exercise, you will extend the Data Factory to operationalize the Databricks Notebooks. 
-
-### Task 1: Create Azure Databricks Linked Service
-
-1. Return to, or reopen, the Author & Monitor page for your Azure Data Factory in a web browser, navigate to the Author view, and select the pipeline.
-
-   ![Select the ADF pipeline created in the previous exercise.](media/adf-ml-select-pipeline.png 'Select the ADF pipeline')
-
-2. Once there, expand Databricks under Activities.
-
-   ![Expand the Databricks activity after selecting your pipeline.](media/adf-ml-expand-databricks-activity.png 'Expand Databricks Activity')
-
-3. Drag the Notebook activity onto the design surface to the side of the Copy activity.
-
-   ![Drag the Notebook onto the design surface.](media/adf-ml-drag-notebook-activity.png 'Notebook on design surface')
-
-4. Select the Notebook activity on the design surface to display tabs containing its properties and settings at the bottom of the screen. On the **General** tab, enter "BatchScore" into the Name field.
-
-   ![Type BatchScore as the Name under the General tab.](media/adf-ml-notebook-general.png 'Databricks Notebook General Tab')
-
-5. Select the **Azure Databricks** tab, and select **+ New** next to the Databricks Linked service drop down. Here, you will configure a new linked service which will serve as the connection to your Databricks cluster.
-
-   ![Screenshot of the Settings tab.](media/adf-ml-settings-new-link.png 'Databricks Notebook Settings Tab')
-
-6. On the New Linked Service dialog, enter the following:
-
-   - Name: enter a name, such as **AzureDatabricks**.
-   - Connect via integration runtime: Leave set to Default.
-   - Account selection method: Select From Azure subscription.
-   - Choose your Azure Subscription.
-   - Pick your Databricks workspace to populate the Domain automatically.
-   - Select cluster: choose **Existing interactive cluster**.
-
-   ![Screenshot showing filled out form with defined parameters.](media/adf-ml-databricks-service-settings.png 'Databricks Linked Service settings')
-
-7. Leave the form open and open your Azure Databricks workspace in another browser tab. You will retrieve the Access token and cluster id here.
-
-8. In Azure Databricks, select the Account icon in the top corner of the window, then select **User Settings**.
-
-   ![Select account icon, then user settings.](media/databricks-select-user-settings.png 'Azure Databricks user account settings')
-
-9. Select **Generate New Token** under the Access Tokens tab. Enter **ADF access** for the comment and leave the lifetime at 90 days. Select **Generate**.
-
-   ![Generate a new token.](media/databricks-generate-new-token.png 'Generate New Token')
-
-10. **Copy** the generated token and **paste it into a text editor** such as Notepad for a later step.
-
-    ![Copy the generated token.](media/databricks-copy-token.png 'Copy generated token')
-
-11. Switch back to your Azure Data Factory screen and paste the generated token into the **Access token** field within the form. After a moment, select your cluster underneath **Choose from existing clusters**. Select **Create**.
-
-    ![Paste the generated access token.](media/adf-ml-access-token.png 'Paste access token')
-
-12. Switch back to Azure Databricks. Select **Workspace** in the menu. Select the **Exercise 5** folder then open notebook **01 Deploy for Batch Scoring**. Examine the content but _don't run any of the cells yet_. You need to replace `STORAGE-ACCOUNT-NAME` with the name of the blob storage account you copied in Exercise 1.
-
-    ![Select workspace, select the Exercise 5 folder, then select 01 Deploy for Batch Score.](media/databricks-workspace-create-folder.png 'Create folder')
-
-13. Switch back to your Azure Data Factory screen. Select the **Settings** tab, then browse to your **Exercise 5/01 Deploy for Batch Score** notebook into the Notebook path field.
-
-    ![browse to 04 Deploy for Batch score into the notebook path.](media/adf-ml-notebook-path.png 'Notebook path')
-
-14. The final step is to connect the Copy activities with the Notebook activity. Select the small green box on the side of the copy activity, and drag the arrow onto the Notebook activity on the design surface. What this means is that the copy activity has to complete processing and generate its files in your storage account before the Notebook activity runs, ensuring the files required by the BatchScore notebook are in place at the time of execution. Select **Publish All** after making the connection.
-
-    ![Attach the copy activity to the notebook and then publish.](media/adf-ml-connect-copy-to-notebook.png 'Attach the copy activity to the notebook')
-
-### Task 2: Trigger workflow
-
-1. Switch back to Azure Data Factory. Select your pipeline if it is not already opened.
-
-2. Select **Trigger**, then **Trigger Now** located above the pipeline design surface.
-
-   ![Manually trigger the pipeline.](media/adf-ml-trigger-now.png 'Trigger Now')
-
-3. Enter **3/1/2017** into the windowStart parameter, then select **Finish**.
-
-   ![Screenshot showing the Pipeline Run form.](media/adf-ml-pipeline-run.png 'Pipeline Run')
-
-4. Select **Monitor** in the menu. You will be able to see your pipeline activity in progress as well as the status of past runs.
-
-   ![View your pipeline activity.](media/adf-ml-monitor.png 'Monitor')
-   
-   
-
-## Exercise 4: Populating SnowFlakes suing the Databricks connector for SnowFlakes
-
-### Task 1: <VIJI>
-
-## Exercise 5: Visualizing in Power BI Desktop
-
-Duration: 20 minutes <VIJI>
-
-In this exercise, you will create visualizations in Power BI Desktop.
-
-### Task 1: Obtain the JDBC connection string to your Azure Databricks cluster
-
-Before you begin, you must first obtain the JDBC connection string to your Azure Databricks cluster.
-
-1. In Azure Databricks, go to Clusters and select your cluster.
-
-2. On the cluster edit page, scroll down to the bottom of the page, expand **Advanced Options**, then select the **JDBC/ODBC** tab.
-
-   ![Select the JDBC/ODBC tab.](media/databricks-power-bi-jdbc.png 'JDBC strings')
-
-3. On the **JDBC/ODBC** tab, copy and save the first JDBC URL.
-
-   - Construct the JDBC server address that you will use when you set up your Spark cluster connection in Power BI Desktop.
-
-   - Take the JDBC URL that you copied and saved in step 3 and do the following:
-
-   - Replace `jdbc:spark` with `https`.
-
-   - Remove everything in the path between the port number and sql, retaining the components indicated by the boxes in the image below. Also remove `;AuthMech=3;UID=token;PWD=<personal-access-token>` from the end of the string.
-
-   ![Select the parts to create the Power BI connection string.](media/databricks-power-bi-spark-address-construct.png 'Construct Power BI connection string')
-
-   - In our example, the server address would be:
-
-   <https://westus2.azuredatabricks.net:443/sql/protocolv1/o/2035768554230150/0603-160328-rage709> or <https://westus2.azuredatabricks.net:443/sql/protocolv1/o/2035768554230150/lab> (if you choose the aliased version)
-
-### Task 2: Connect to Azure Databricks using Power BI Desktop
-
-1. If you did not already do so during the before the hands-on lab setup, download Power BI Desktop from https://powerbi.microsoft.com/en-us/desktop/.
-
-2. When Power BI Desktop starts, you will need to enter your personal information, or Sign in if you already have an account.
-
-   ![The Power BI Desktop Welcome page displays.](media/image177.png 'Power BI Desktop Welcome page')
-
-3. Select Get data on the screen that is displayed next.
-   ![On the Power BI Desktop Sign in page, in the pane, Get data is selected.](media/image178.png 'Power BI Desktop Sign in page')
-
-4. Select **Other** from the side, and select **Spark** from the list of available data sources.
-
-   ![In the pane of the Get Data page, Other is selected. In the pane, Spark is selected.](media/pbi-desktop-get-data.png 'Get Data page')
-
-5. Select **Connect**.
-
-6. On the next screen, you will be prompted for your Spark cluster information.
-
-7. Paste the JDBC connection string you constructed a few steps ago into the **Server** field.
-
-8. Select the **HTTP** protocol.
-
-9. Select **DirectQuery** for the Data Connectivity mode, and select **OK**. This option will offload query tasks to the Azure Databricks Spark cluster, providing near-real time querying.
-
-   ![Configure your connection to the Spark cluster.](media/pbi-desktop-connect-spark.png 'Spark form')
-
-10. Enter your credentials on the next screen as follows:
-
-    - User name: **token**
-
-    - Password: Remember that ADF Access token we generated and asked you to paste in Notepad, that is the password.
-
-    ![Copy the generated token.](media/databricks-copy-token.png 'Copy generated token')
-
-    ![Enter "token" for the user name and paste user token into the password field.](media/pbi-desktop-login.png 'Enter credentials')
-
-11. Select **Connect**.
-
-12. In the Navigator dialog, check the box next to **flight_delays_summary**, and select **Load**.
-
-    ![In the Navigator dialog box, in the pane under Display Options, the check box for flight_delays_summary is selected. In the pane, the table of flight delays summary information displays.](media/pbi-desktop-select-table-navigator.png 'Navigator dialog box')
-
-13. It will take several minutes for the data to load into the Power BI Desktop client.
-
-### Task 3: Create Power BI report
-
-1. Once the data finishes loading, you will see the fields appear on the far side of the Power BI Desktop client window.
-
-   ![Power BI Desktop fields.](media/pbi-desktop-fields.png 'Power BI Desktop Fields')
-
+    ![Real Time Streaming](media/exercise7_2.png)
 
 ## After the hands-on lab
 
