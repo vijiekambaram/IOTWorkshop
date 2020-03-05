@@ -36,7 +36,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   - [Exercise 4: Configure Stream Analytics Job](#exercise-4-stream-analytics-setup)
   - [Exercise 5: Start Stream Analytics Job](#exercise-5-start-stream-analytics)
   - [Exercise 6: Run the Ingestion code to push data to IOT Hub](#exercise-7-run-ingestion-code)
-  - [Exercise 7: Login to PowerBI Online account](#exercise-8-power-bi-online
+  - [Exercise 7: Login to PowerBI Online account](#exercise-8-power-bi-online)
 
 <!-- /TOC -->
 
