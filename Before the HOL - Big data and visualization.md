@@ -58,123 +58,77 @@ Azure IOT Hub is an Azure service that enables you to ingest high volumes of dat
 
 > **Note**: To view the Azure portal menu, select the menu icon in the upper left-hand corner.
 
-![The Azure portal menu is highlighted.](media/portal-menu.png 'Azure portal menu')
 
 1. In the [Azure Portal](https://portal.azure.com) (https://portal.azure.com), select **+ Create a resource** within the portal menu, then type "IOT Hub" into the search bar. Select IOT Hub from the results.
 
-   ![Select create a resource, type in Azure Databricks, then select it from the results list](media/create-azure-databricks-resource.png)
+   ![Select IOT HUb](media/iot_hub_1.png)
 
-2. Select Create on the bottom of the blade that follows.
+2. From IOT Hub, click on +Add.
 
-3. Set the following configuration on the Azure Databricks Service creation form:
+3. Enter the details as below:
+    a.	Resource Group: Create new and give name as iotworkshop-rg
+    b.	Other details as below
 
-   - **Name**: Enter a unique name as indicated by a green checkmark.
+   ![Enter IOT Hub details.](media/iot_hub_3.png)
 
-   - **Subscription**: Select the subscription you are using for this hands-on lab.
-
-   - **Resource Group**: Select **Create new** and enter a unique name, such as "hands-on-lab-bigdata".
-
-   - **Location**: Select a region close to you. **_(If you are using an Azure Pass, select South Central US.)_**
-
-   - **Pricing**: Select Premium.
-
-   - **Deploy Azure Databricks workspace in your Virtual Network**: Select No.
-
-   ![Complete the Azure Databricks Service creation form with the options as outlined above.](media/azure-databricks-create-blade.png)
-
-4. Select **Create** to finish and submit.
+4. Click on Review + Create.
 
 ### Task 2: Create Azure Storage account
 
-Create a new Azure Storage account that will be used to store Shopify and Magento data.
+Create a new Azure Storage account that will be used to store IOT Hub data and Reference data (mapping)
 
 1. In the [Azure Portal](https://portal.azure.com) (<https://portal.azure.com>), select **+ Create a resource**, then type "storage" into the search bar. Select **Storage account** from the results.
 
-   ![Select create a resource, type in storage, then select Storage account... from the results list](media/create-azure-storage-resource.png)
+   ![Select Storage account... from the results list](media/storage_account_1.png)
 
-2. Select Create on the bottom of the blade that follows.
+2. From Storage Accounts page, Click on +Add. 
 
-3. Set the following configuration on the Azure Storage account creation form:
+3. Select the same Resource Group as above.
 
-   - **Subscription**: Select the subscription you are using for this hands-on lab.
+4. Enter the details as below:
 
-   - **Resource group**: Select the same resource group you created at the beginning of this lab.
+    ![Complete the Azure storage account creation form with the options as outlined above.](media/storage_account_4.png)
 
-   - **Storage account name**: Enter a unique name as indicated by a green checkmark.
-
-   - **Location**: Select the same region you used for Azure Databricks.
-
-   - **Performance**: Standard
-
-   - **Account kind**: StorageV2(general purpose v2)
-
-   - **Replication**: Read-access geo-redundant storage (RA-GRS)
-
-   - **Access tier**: Hot
-   
-   Navigate to Advanced Tab 
-   
-   - **Hierarchical namespace**: Enabled
-   
-
-   
-
-   ![Complete the Azure storage account creation form with the options as outlined above.](media/azure-storage-create-blade.png)
-
-4. Select **Create** to finish and submit.
+5. Click on Review + Create.
 
 ### Task 3: Create storage container
 
-In this task, you will create a storage container in which you will store your Magento and Shopify data files.
+In this task, you will create a storage container in which you will store the data.
 
-1. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
+1. Type Storage Account in Search box.
 
-2. Next, select your lab Azure Storage account from the list.
+2. Click on the storage account created.
 
-   ![Select the lab Azure Storage account from within your lab resource group](media/select-azure-storage-account.png)
+   ![Select the Storage Container](media/storage_container_2.png)
 
-3. Select **Containers** (1) from the menu. Select **+ Container** (2) on the Blobs blade, enter **sparkcontainer** for the name (3), leaving the public access level set to Private. Select **OK** (4) to create the container.
+3. Scroll down on the Left Pane and select Containers and on the right side Click on +Container and enter the Container name.
 
-   ![Screenshot showing the steps to create a new storage container](media/azure-storage-create-container.png)
+   ![Screenshot showing the steps to create a new storage container](media/storage_containter_3.png)
 
-### Task 4: Provision Azure Data Factory
+### Task 4: Provision Azure Stream Analytics
 
-Create a new Azure Data Factory instance that will be used to orchestrate data transfers for analysis.
+Create a Azure Stream Analytics which is a real-time analytics and complex event-processing engine that is designed to analyze and process high volumes of fast streaming data from multiple sources simultaneously.
 
-1. In the [Azure Portal](https://portal.azure.com) (<https://portal.azure.com>), select **+ Create a resource**, then type "Data Factory" into the search bar. Select **Data Factory** from the results.
+1. In the [Azure Portal](https://portal.azure.com) (<https://portal.azure.com>), 1.	Type Stream Analytics in Search box and select Stream Analytics jobs.
 
-   ![Select create a resource, type in Data Factory, then select Data Factory from the results list](media/create-azure-data-factory.png)
+   ![Select create a resource, type in Stream Analytics](media/stream_analytics_1.png)
 
-2. Select Create on the bottom of the blade that follows.
+2. From Stream Analytics Page, select +Add.
 
-3. Set the following configuration on the Data Factory creation form:
+3. Enter the below details, select the Resource Group as that was created above. Click Create:
 
-   - **Name**: Enter a unique name as indicated by a green checkmark.
-
-   - **Subscription**: Select the subscription you are using for this hands-on lab.
-
-   - **Resource Group**: Select the same resource group you created at the beginning of this lab.
-
-   - **Version**: Select V2.
-
-   - **Location**: Select any region close to you.
-
-   - **Enable GIT**: Unchecked.
-
-   **_Understanding Data Factory Location:_**
-   The Data Factory location is where the metadata of the data factory is stored and where the triggering of the pipeline is initiated from. Meanwhile, a data factory can access data stores and compute services in other Azure regions to move data between data stores or process data using compute services. This behavior is realized through the [globally available IR](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=data-factory) to ensure data compliance, efficiency, and reduced network egress costs.
-
-   The IR Location defines the location of its back-end compute, and essentially the location where the data movement, activity dispatching, and SSIS package execution are performed. The IR location can be different from the location of the data factory it belongs to.
-
-   ![Complete the Azure Data Factory creation form with the options as outlined above.](media/azure-data-factory-create-blade.png)
+   ![Complete the Azure Stream Analytics.](media/stream_analytics_3.png)
 
 4. Select **Create** to finish and submit.
 
-### Task 5: Download and install Power BI Desktop
+### Task 5: Create Power BI Account
 
-Power BI desktop is required to make a connection to your Azure Databricks environment when creating the Power BI dashboard.
+In this task we will create Power BI Online account as it supports real time monitoring using Streaming data.
 
-1. Download and install [Power BI Desktop](https://powerbi.microsoft.com/desktop/).
+1. Go to https://app.powerbi.com.
+2. Click on Sign In and Create an Account using Work Account
+
+    ![Complete the Azure PowerBI.](media/power_bi_1.png)
 
 
 ### Task 6: Download Azure Storage Explorer
