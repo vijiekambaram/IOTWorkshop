@@ -1,0 +1,14 @@
+[
+  {
+    "Device_Id": 173605,
+    "Device_Name": "GeneratorA",
+    "Parent_Plant": "PlantA",
+    "Parent_Unit": "UnitA"
+  },
+  {
+    "Device_Id": 173433,
+    "Device_Name": "GeneratorB",
+    "Parent_Plant": "PlantB",
+    "Parent_Unit": "UnitB"
+  }
+]
