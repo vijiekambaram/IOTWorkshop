@@ -192,9 +192,27 @@ In this exercise, you will trigger the Stream Analytics Job.
 
 ## Exercise 6: Run the Ingestion code to push data to IOT Hub
 
-1.	On your local machine, execute the Python code either using PyCharm or execute the command manually. Go to the location where Python code resides and enter the command python iot-hub-umw-simulation-script.py.
-2.	This will keep ingesting the data into IOT Hub for every 10 secs
+In the Azure Portal, Click on Cloud Shell icon and it will open a Bash or Powershell Prompt depending on what we choose. Enter the command az extension add --name azure-cli-iot-ext in Cloud Shell
 
+   ![Cloud Shell](media/cloud_shell.png)
+
+1.	On your local machine, execute the Python code either using PyCharm or execute the command manually. Go to the location where Python code resides and enter the command python iot-hub-umw-simulation-script.py.
+2.	This will keep ingesting the data into IOT Hub for every 10 secs.
+
+To view the messages from IOT Hub, from Azure Portal, go to Cloud Shell icon and enter the command 
+
+az iot hub monitor-events --hub-name iot-hub-free-tier-f1 --device-id gensetdevice
+
+![IOT Hub Message View](media/cloud_shell_message_view.png)
+
+
+In the Azure portal, go to  IOT Hub resource, on the right pane scroll down to see Device to Cloud Messages
+
+   ![Device to Cloude Messages](media/iot_hub_message_monitor.png)
+	 
+In the Azure portal, go to Stream Analytics resounce and on the right pane scroll down to Monitoring chart to see the arrival of incoming and output messages
+
+   ![Stream Monitoring](media/stream_analytics_message_monitor.png)
 
 ## Exercise 7: Login to PowerBI account
 
