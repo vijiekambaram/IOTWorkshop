@@ -218,12 +218,12 @@ In the Azure portal, go to Stream Analytics resounce and on the right pane scrol
 
 Duration: 10 minutes 
 
-1.	Go  https://app.powerbi.com and login using the account created
-2.	From My Workspace, scroll down go to Datasets check if table got created
+1. Go  https://app.powerbi.com and login using the account created
+2. From My Workspace, scroll down go to Datasets check if table got created
 
 	![Dataset Check](media/power_bi_dataset_list.png)
 	
-3. 	Click on My Workspace to create a Dashboard. Give the dashboard name as iot-hub-demo
+3. Click on My Workspace to create a Dashboard. Give the dashboard name as iot-hub-demo
 
 	![Create Dashboard](media/power_bi_create_dashboard.png)
 	
@@ -232,39 +232,35 @@ Duration: 10 minutes
 	![List Dashboard](media/power_bi_dashboard_list.png)
 		
 	
-4. 	Click on the Dashboard and Add Tile. Select Custom Streaming Data and then Next
+4. Click on the Dashboard and Add Tile. Select Custom Streaming Data and then Next
 
 	![Add tile Dashboard](media/power_bi_add_tile1.png)
 
-5.      Click on the Dataset and then Next
+5. Click on the Dataset and then Next
 
         ![Add tile Dashboard](media/power_bi_select_ur_dataset.png)
 	
-6.     Select Visualization Type as Card and Field -> Add Value -> AVG_POWER, Click Next
+6. Select Visualization Type as Card and Field, Add Value as AVG_POWER, Click Next
 
         ![Add tile Card](media/power_bi_add_tile1_card.png)
 
-7.     Give the Title as Power and Click Apply
+7. Give the Title as Power and Click Apply
 
         ![Add tile Card Details](media/power_bi_add_tile1_card_details.png)
 	
+8. Similary do for others Visualization Type as Card, Value as AVG_GFrq Frequency, Title as Generator Frequency
 
-8.     Similary do for others as below
-
-        a. Visualization Type as Card, Value as AVG_GFrq Frequency, Title as Generator Frequency
-	b. Visualization Type as Gauge, Value as AVG_VBAT, Minimum Value as ideal_min_POWER, Maximum Value as ideal_max_POWER, Target Value as target_POWER, Title as Battery
-	c. Visualization Type as Gauge, Value as AVG_RPM, Minimum Value as ideal_min_RPM, Maximum Value as ideal_max_RPM, Target Value as target_RPM, Title as RPM
-	d. Visualization Type as Card, Value as AVG_Eclt Frequency, Title as Coolant Temperature
-	e. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_IL1, AVG_IL2, AVG_IL3, Time Window to Display 1 Minutes, Title as Line Current IL1 vs IL2 vs IL3
-	f. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG1, AVG_VG2, AVG_VG3, Time Window to Display 1 Minutes, Title as Phase to Ground Voltage
-	g. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG12, AVG_VG23, AVG_VG31, Time Window to Display 1 Minutes, Title as Phase to Phase Voltage
+9. Visualization Type as Gauge, Value as AVG_VBAT, Minimum Value as ideal_min_POWER, Maximum Value as ideal_max_POWER, Target Value as target_POWER, Title as Battery
+10. Visualization Type as Gauge, Value as AVG_RPM, Minimum Value as ideal_min_RPM, Maximum Value as ideal_max_RPM, Target Value as target_RPM, Title as RPM
+11. Visualization Type as Card, Value as AVG_Eclt Frequency, Title as Coolant Temperature
+12. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_IL1, AVG_IL2, AVG_IL3, Time Window to Display 1 Minutes, Title as Line Current IL1 vs IL2 vs IL3
+13. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG1, AVG_VG2, AVG_VG3, Time Window to Display 1 Minutes, Title as Phase to Ground Voltage
+14. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG12, AVG_VG23, AVG_VG31, Time Window to Display 1 Minutes, Title as Phase to Phase Voltage
 	
-   Final Dashboard would be
+Final Dashboard would be
 
     ![Real Time Streaming](media/exercise7_2.png)
     
-Upon completion, share the PowerBI dashboard that was built using the raw Genset1 and Genset2 data
-
 ## After the hands-on lab
 
 Duration: 10 minutes
