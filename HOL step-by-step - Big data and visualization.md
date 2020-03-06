@@ -248,14 +248,14 @@ Duration: 10 minutes
 
       ![Add tile Card Details](media/power_bi_add_tile1_card_details.png)
 	
-8. Similary do for others Visualization Type as Card, Value as AVG_GFrq Frequency, Title as Generator Frequency
+8. Similary do for others Add Tile, Visualization Type as Card, Value as AVG_GFrq Frequency, Title as Generator Frequency
 
-9. Visualization Type as Gauge, Value as AVG_VBAT, Minimum Value as ideal_min_POWER, Maximum Value as ideal_max_POWER, Target Value as target_POWER, Title as Battery
-10. Visualization Type as Gauge, Value as AVG_RPM, Minimum Value as ideal_min_RPM, Maximum Value as ideal_max_RPM, Target Value as target_RPM, Title as RPM
-11. Visualization Type as Card, Value as AVG_Eclt Frequency, Title as Coolant Temperature
-12. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_IL1, AVG_IL2, AVG_IL3, Time Window to Display 1 Minutes, Title as Line Current IL1 vs IL2 vs IL3
-13. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG1, AVG_VG2, AVG_VG3, Time Window to Display 1 Minutes, Title as Phase to Ground Voltage
-14. Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG12, AVG_VG23, AVG_VG31, Time Window to Display 1 Minutes, Title as Phase to Phase Voltage
+9. Add Tile, Visualization Type as Gauge, Value as AVG_VBAT, Minimum Value as ideal_min_POWER, Maximum Value as ideal_max_POWER, Target Value as target_POWER, Title as Battery
+10. Add Tile, Visualization Type as Gauge, Value as AVG_RPM, Minimum Value as ideal_min_RPM, Maximum Value as ideal_max_RPM, Target Value as target_RPM, Title as RPM
+11. Add Tile, Visualization Type as Card, Value as AVG_Eclt Frequency, Title as Coolant Temperature
+12. Add Tile, Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_IL1, AVG_IL2, AVG_IL3, Time Window to Display 1 Minutes, Title as Line Current IL1 vs IL2 vs IL3
+13. Add Tile, Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG1, AVG_VG2, AVG_VG3, Time Window to Display 1 Minutes, Title as Phase to Ground Voltage
+14. Add Tile, Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_VG12, AVG_VG23, AVG_VG31, Time Window to Display 1 Minutes, Title as Phase to Phase Voltage
 	
 Final Dashboard would be
 
