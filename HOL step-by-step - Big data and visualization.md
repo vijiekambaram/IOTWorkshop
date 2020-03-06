@@ -238,15 +238,15 @@ Duration: 10 minutes
 
 5. Click on the Dataset and then Next
 
-        ![Add tile Dashboard](media/power_bi_select_ur_dataset.png)
+      ![Add tile Dashboard](media/power_bi_select_ur_dataset.png)
 	
 6. Select Visualization Type as Card and Field, Add Value as AVG_POWER, Click Next
 
-        ![Add tile Card](media/power_bi_add_tile1_card.png)
+      ![Add tile Card](media/power_bi_add_tile1_card.png)
 
 7. Give the Title as Power and Click Apply
 
-        ![Add tile Card Details](media/power_bi_add_tile1_card_details.png)
+      ![Add tile Card Details](media/power_bi_add_tile1_card_details.png)
 	
 8. Similary do for others Visualization Type as Card, Value as AVG_GFrq Frequency, Title as Generator Frequency
 
@@ -259,7 +259,7 @@ Duration: 10 minutes
 	
 Final Dashboard would be
 
-    ![Real Time Streaming](media/exercise7_2.png)
+   ![Real Time Streaming](media/exercise7_2.png)
     
 ## After the hands-on lab
 
