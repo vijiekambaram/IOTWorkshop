@@ -218,8 +218,29 @@ In the Azure portal, go to Stream Analytics resounce and on the right pane scrol
 
 Duration: 10 minutes 
 
-1.	Go  https://app.powerbi.com and login using the account shared during the lab
-2.	From My Workspace, Select iot-hub-dashboard3 from Dashboards section. Dashboard will get updated in real time
+1.	Go  https://app.powerbi.com and login using the account created
+2.	From My Workspace, scroll down go to Datasets check if table got created
+
+	![Dataset Check](media/power_bi_dataset_list.png)
+	
+3. 	Click on My Workspace to create a Dashboard. Give the dashboard name as iot-hub-demo
+
+	![Create Dashboard](media/power_bi_create_dashboard.png)
+	
+	Dashboard is created
+	
+	![List Dashboard](media/power_bi_dashboard_list.png)
+		
+	
+4. 	Click on the Dashboard and Add Tile. Select Custom Streaming Data and then Next
+
+	![Add tile Dashboard](media/power_bi_add_tile1.png)
+
+5.      Click on the Dataset and then Next
+
+        ![Add tile Dashboard](media/power_bi_select_ur_dataset.png)
+	
+6.     Select Visualization Type as 
 
     ![Real Time Streaming](media/exercise7_2.png)
     
