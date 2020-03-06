@@ -70,7 +70,7 @@ def iothub_client_telemetry_more_sample_run():
 
         df_count = iterate_df_count = len(df)
         # parameter to decide how many inputs needs to run in single request
-        records_per_batch = 5
+        records_per_batch = 10
 
         record_start = 0
         record_end = records_per_batch
@@ -104,7 +104,7 @@ def iothub_client_telemetry_more_sample_run():
             client.send_message(message)
 
             print("Message successfully sent")
-            time.sleep(10)
+            time.sleep(5)
 
             record_start = record_end
             record_end = record_end + records_per_batch
