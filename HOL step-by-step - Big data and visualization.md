@@ -222,6 +222,8 @@ Duration: 10 minutes
 2.	From My Workspace, Select iot-hub-dashboard3 from Dashboards section. Dashboard will get updated in real time
 
     ![Real Time Streaming](media/exercise7_2.png)
+    
+Upon completion, share the PowerBI dashboard that was built using the raw Genset1 and Genset2 data
 
 ## After the hands-on lab
 
