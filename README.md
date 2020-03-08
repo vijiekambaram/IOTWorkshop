@@ -22,6 +22,8 @@ March 2020
 At the end of this workshop, you will be better able to build a complete data pipeline and visualize the data.
 In addition, you will learn how to ingest the data into Azure IOT hub, perform some processing in Azure Stream Analytics and visualize the data using Power BI.
 
+![IOT Architecture](media/workshop_iot_arc.png)
+
 
 ### Hands-on lab
 
