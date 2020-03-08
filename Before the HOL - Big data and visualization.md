@@ -103,7 +103,7 @@ In this task, you will create a storage container in which you will store the da
 
 3. Scroll down on the Left Pane and select Containers and on the right side Click on +Container and enter the Container name.
 
-   ![Screenshot showing the steps to create a new storage container](media/storage_containter_3.png)
+   ![Screenshot showing the steps to create a new storage container](media/storage_container_3.png)
 
 ### Task 4: Provision Azure Stream Analytics
 
