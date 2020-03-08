@@ -1,7 +1,7 @@
 ![Microsoft Cloud Workshop](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png 'Microsoft Cloud Workshop')
 
 <div class="MCWHeader1">
-Big data and visualization
+Real Time Monitoring of IOT data
 </div>
     
 <div class="MCWHeader2">
@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Big data and visualization before the hands-on lab setup guide](#big-data-and-visualization-before-the-hands-on-lab-setup-guide)
+- [Real Time Monitoring of IOT data before the hands-on lab setup guide](#iot-data-and-monitoring-before-the-hands-on-lab-setup-guide)
   - [Requirements](#requirements)
   - [Before the hands-on lab](#before-the-hands-on-lab)
     - [Task 1: Provision Azure IOT Hub](#task-1-provision-azure-databricks)
@@ -38,7 +38,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
-# Big data and visualization before the hands-on lab setup guide
+# Real Time Monitoring of IOT data before the hands-on lab setup guide
 
 ## Requirements
 
