@@ -197,7 +197,7 @@ In the Azure Portal, Click on Cloud Shell icon and it will open a Bash or Powers
 
    ![Cloud Shell](media/cloud_shell.PNG)
 
-1.	On your local machine, execute the Python code either using PyCharm or execute the command manually. Go to the location where Python code resides and enter the command python iot-hub-umw-simulation-script.py.
+1.	On your local machine, execute the Python code either using PyCharm or execute the command manually. Go to the location where Python code resides and enter the command python iot-hub-umw-simulation-script.py
 2.	This will keep ingesting the data into IOT Hub for every 10 secs.
 
 To view the messages from IOT Hub, from Azure Portal, go to Cloud Shell icon and enter the command 
