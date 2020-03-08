@@ -128,7 +128,7 @@ In this task we will create Power BI Online account as it supports real time mon
 1. Go to https://app.powerbi.com.
 2. Click on Sign In and Create an Account using Work Account
 
-    ![Complete the Azure PowerBI.](media/power_bi_1.png)
+    ![Complete the Azure PowerBI.](media/power_bi_2.png)
     
 Power BI desktop is required to make a connection to your Blob Storage for batch reporting.
 
