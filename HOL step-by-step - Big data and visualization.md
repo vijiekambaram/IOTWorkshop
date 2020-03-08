@@ -121,6 +121,7 @@ In this exercise, you will upload the reference data into Blob. Download the dev
 
 2.	Select the device_reference_data.json from your local and Click on Upload
 3.	Click on Advanced and enter Upload to Folder as iotreferencedata. Click on Upload
+    ![Upload Container](media/exercise3_4.png)
  
 
 ## Exercise 4: Configure Stream Analytics Job
