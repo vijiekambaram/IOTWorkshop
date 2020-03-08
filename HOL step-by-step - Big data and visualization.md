@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Big data and visualization hands-on lab step-by-step](#big-data-and-visualization-hands-on-lab-step-by-step)
+- [Real Monitoring of IOT data hands-on lab step-by-step](#iot-data-and-monitoring-hands-on-lab-step-by-step)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Overview](#overview)
   - [Requirements](#requirements)
@@ -40,7 +40,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- /TOC -->
 
-# Big data and visualization hands-on lab step-by-step
+# Real Time Monitoring of IOT data hands-on lab step-by-step
 
 ## Abstract and learning objectives
 
