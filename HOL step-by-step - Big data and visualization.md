@@ -146,7 +146,7 @@ In this exercise, you will configure Stream Analytics - Input, Output and Query.
 8.	Click on Select Blob storage from your subscriptions
 9.	Select the right Storage Account, Container, path pattern where the reference data resides. Click on Save. Path Pattern as  iotreferencedata/device_reference_data.json
 
-    ![Select Storage Account](media/exercise4_9.png)
+    ![Select Storage Account](media/exercise4_9_1.png)
 
 ## Output Section 
 
