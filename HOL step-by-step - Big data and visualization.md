@@ -251,7 +251,7 @@ Duration: 10 minutes
 	
 8. Similary do for others Add Tile, Visualization Type as Card, Value as AVG_GFrq Frequency, Title as Generator Frequency
 
-9. Add Tile, Visualization Type as Gauge, Value as AVG_VBAT, Minimum Value as ideal_min_POWER, Maximum Value as ideal_max_POWER, Target Value as target_POWER, Title as Battery
+9. Add Tile, Visualization Type as Gauge, Value as AVG_VBAT, Minimum Value as ideal_min_VBAT, Maximum Value as ideal_max_VBAT, Target Value as target_VBAT, Title as Battery
 10. Add Tile, Visualization Type as Gauge, Value as AVG_RPM, Minimum Value as ideal_min_RPM, Maximum Value as ideal_max_RPM, Target Value as target_RPM, Title as RPM
 11. Add Tile, Visualization Type as Card, Value as AVG_Eclt Frequency, Title as Coolant Temperature
 12. Add Tile, Visualization Type as Line Chart, Axis ingestion_timestamp, Values AVG_IL1, AVG_IL2, AVG_IL3, Time Window to Display 1 Minutes, Title as Line Current IL1 vs IL2 vs IL3
