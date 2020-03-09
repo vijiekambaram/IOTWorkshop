@@ -154,11 +154,11 @@ In this exercise, you will configure Stream Analytics - Input, Output and Query.
 
     ![Select PowerBI Output](media/exercise4_10.png)
 
-11.	Click on Authorize if there is already PowerBI Online account. Else Click on Sign Up using work account. Since the dashboard is already created using our account, we will provide the account details during the lab.
-12.	Once Authorized, enter the Output Alias as power-bi-output
-13.	Select My Workspace and enter dataset name as streamingData and table as streamingTable
+11.	Click on Authorize if there is already PowerBI Online account. Else Click on Sign Up using work account. 
+12.	Once Authorized, enter the Output Alias as power-bi-output, select the Authentication Type as User Token
+13.	Select My Workspace from drop down and enter dataset name as streamingData and table as streamingTable
 
-    ![Select PowerBI Workspace](media/exercise4_13.png)
+    ![Select PowerBI Workspace](media/exercise4_13_1.png)
 
 14.	Add another output blob-raw-output, to store the raw input without any transformations in Blob for batch reporting or analytics
 
